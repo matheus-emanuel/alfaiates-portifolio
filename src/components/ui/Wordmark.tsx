@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Wordmark.module.css";
 
 export interface WordmarkProps {
@@ -18,6 +19,13 @@ export function Wordmark({ size = 22, invert = false, href, ...rest }: WordmarkP
     </>
   );
   if (href) {
+    if (href.startsWith("/")) {
+      return (
+        <Link href={href} className={classes} style={{ fontSize }} {...rest}>
+          {inner}
+        </Link>
+      );
+    }
     return (
       <a href={href} className={classes} style={{ fontSize }} {...rest}>
         {inner}

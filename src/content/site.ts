@@ -212,7 +212,7 @@ export const entregas = {
   itens: [
     {
       icone: "layout-template",
-      tom: "malva",
+      tom: "primary",
       titulo: "Landing page",
       beneficio: "Uma página pra explicar o que você faz e receber contato.",
       bullets: ["Feita pro celular", "Formulário ou WhatsApp"]
@@ -226,14 +226,14 @@ export const entregas = {
     },
     {
       icone: "cloud",
-      tom: "rosa",
+      tom: "primary",
       titulo: "SaaS",
       beneficio: "Produto próprio, com contas de clientes e cobrança.",
       bullets: ["Login por perfil", "Cresce por módulos"]
     },
     {
       icone: "plug",
-      tom: "malva",
+      tom: "primary",
       titulo: "Integrações",
       beneficio: "O que você já usa conversando com o sistema novo.",
       bullets: ["WhatsApp e pagamentos", "Importação de planilha"]

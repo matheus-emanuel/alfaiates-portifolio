@@ -35,6 +35,11 @@ export const metadata: Metadata = {
     description: site.descricao,
     url: "/"
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.nome}: sistemas sob medida para o seu negócio`,
+    description: site.descricao
+  },
   robots: { index: true, follow: true }
 };
 

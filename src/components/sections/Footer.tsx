@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { StitchDivider } from "@/components/ui/StitchDivider";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { ExternalLink } from "@/components/ui/ExternalLink";
@@ -28,9 +29,19 @@ export function Footer() {
             ) : null}
           </div>
         </div>
-        <span className={styles.legal}>
-          © {new Date().getFullYear()} {site.nome}. Todos os direitos reservados.
-        </span>
+        <div className={styles.legalRow}>
+          <span className={styles.legal}>
+            © {new Date().getFullYear()} {site.nome}. Todos os direitos reservados.
+          </span>
+          <div className={styles.legalLinks}>
+            <Link href="/privacidade" className={styles.legalLink}>
+              Privacidade
+            </Link>
+            <Link href="/termos" className={styles.legalLink}>
+              Termos
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -1,0 +1,31 @@
+/* Mesmo vocabulário visual de um card: fundo branco, hairline, shadow-sm. */
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 2px 18px;
+  box-shadow: var(--shadow-sm);
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  color: var(--action-primary);
+  font-weight: var(--weight-bold);
+  animation: swapIn var(--dur-base) var(--ease-standard);
+}
+
+@keyframes swapIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

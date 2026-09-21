@@ -8,4 +8,8 @@
 .social { font-size: 14px; color: var(--accent-warm); text-decoration: none; }
 .social:hover { color: var(--accent-warm); text-decoration: underline; text-underline-offset: 3px; }
 
+.legalRow { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); align-items: center; justify-content: space-between; }
 .legal { font-size: 13px; color: rgba(255, 255, 255, 0.45); }
+.legalLinks { display: flex; gap: var(--space-4); }
+.legalLink { font-size: 13px; color: rgba(255, 255, 255, 0.45); }
+.legalLink:hover { color: rgba(255, 255, 255, 0.72); text-decoration: underline; text-underline-offset: 3px; }

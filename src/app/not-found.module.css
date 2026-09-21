@@ -1,0 +1,25 @@
+.wrap {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  text-align: center;
+  padding: var(--space-6) var(--container-pad);
+  background: var(--surface-page);
+}
+
+/* Número em mono laranja: mesmo tratamento de dado usado em "Como funciona". */
+.code {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  font-size: 72px;
+  line-height: 1;
+  color: var(--action-primary);
+}
+
+.title { max-width: 20ch; }
+.body { max-width: 46ch; color: var(--text-muted); }
+
+.ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-2); }

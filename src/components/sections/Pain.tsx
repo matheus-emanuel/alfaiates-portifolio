@@ -1,5 +1,5 @@
 import { Section } from "@/components/ui/Section";
-import { FlipWord } from "@/components/ui/FlipWord";
+import { WordSwap } from "@/components/ui/WordSwap";
 import { pain } from "@/content/site";
 import styles from "./Pain.module.css";
 
@@ -9,7 +9,7 @@ export function Pain() {
       <div className="stack stack-7">
         <h2 className={styles.title}>
           <span>{pain.titulo}</span>
-          <FlipWord words={pain.palavras} />
+          <WordSwap words={pain.palavras} />
         </h2>
         <ul className={styles.list}>
           {pain.itens.map((t) => (

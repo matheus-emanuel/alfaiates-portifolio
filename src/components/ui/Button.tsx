@@ -1,4 +1,5 @@
 import type { ComponentProps, ReactNode } from "react";
+import Link from "next/link";
 import styles from "./Button.module.css";
 
 type Variant = "primary" | "secondary" | "tertiary";
@@ -57,6 +58,15 @@ export function Button({
   );
 
   if (href) {
+    // Rota interna (começa com "/"): navegação client-side via next/link.
+    // Âncora de página ("#...") e link externo seguem como <a> normal.
+    if (href.startsWith("/")) {
+      return (
+        <Link href={href} className={classes} {...(rest as AnchorRest)}>
+          {inner}
+        </Link>
+      );
+    }
     return (
       <a href={href} className={classes} {...(rest as AnchorRest)}>
         {inner}
