@@ -11,9 +11,9 @@ const MIN_WIDTH = 768;
 const MIN_CORES = 5;
 
 /**
- * Fundo do hero. Sempre renderiza o fallback estático (papel + halo laranja):
- * é o que aparece no servidor, em celular, com movimento reduzido ou sem GPU.
- * O shader só entra por cima depois da hidratação, quando o aparelho aguenta.
+ * Fundo do hero. Papel + brilho ambiente em CSS sempre renderizam (servidor,
+ * celular, movimento reduzido, sem GPU). O shader, que reage ao mouse, entra
+ * por baixo do brilho depois da hidratação, quando o aparelho aguenta.
  */
 export function HeroBackground() {
   const [animated, setAnimated] = useState(false);
@@ -36,12 +36,16 @@ export function HeroBackground() {
 
   return (
     <div className={styles.bg} aria-hidden="true">
-      <div className={styles.fallback} />
+      <div className={styles.base} />
       {animated ? (
         <div className={styles.shader}>
           <HeroShader onUnavailable={() => setAnimated(false)} />
         </div>
       ) : null}
+      <div className={styles.glow}>
+        <div className={`${styles.halo} ${styles.haloA}`} />
+        <div className={`${styles.halo} ${styles.haloB}`} />
+      </div>
       <div className={styles.veil} />
     </div>
   );

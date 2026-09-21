@@ -6,15 +6,53 @@
   pointer-events: none;
 }
 
-.fallback {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 55% at 78% 22%, rgba(255, 95, 31, 0.12), transparent 70%),
-    var(--surface-page);
-}
+.base { position: absolute; inset: 0; background: var(--surface-page); }
 
 .shader { position: absolute; inset: 0; }
+
+/* Brilho ambiente: fica acima do canvas com multiply, então aparece com ou sem
+   shader (celular, movimento reduzido, sem GPU) e o rastro do mouse continua
+   visível por baixo. Só transform anima; movimento reduzido para no primeiro
+   quadro pela regra global. */
+.glow { position: absolute; inset: 0; mix-blend-mode: multiply; }
+
+.halo {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.haloA {
+  top: -22%;
+  right: -10%;
+  width: 68%;
+  background: radial-gradient(closest-side, rgba(255, 95, 31, 0.34), rgba(255, 95, 31, 0.1) 55%, transparent);
+  animation: driftA 18s ease-in-out infinite alternate;
+}
+
+.haloB {
+  top: 8%;
+  left: -18%;
+  width: 52%;
+  background: radial-gradient(closest-side, rgba(206, 144, 149, 0.3), rgba(206, 144, 149, 0.08) 55%, transparent);
+  animation: driftB 23s ease-in-out infinite alternate;
+}
+
+@keyframes driftA {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-9%, 12%, 0) scale(1.14); }
+}
+
+@keyframes driftB {
+  from { transform: translate3d(0, 0, 0) scale(1.08); }
+  to { transform: translate3d(14%, -8%, 0) scale(0.94); }
+}
+
+@media (max-width: 900px) {
+  .haloA { width: 120%; top: -14%; right: -40%; }
+  .haloB { width: 90%; top: 22%; left: -46%; }
+}
 
 /* Garante contraste do título e do texto de apoio, que ficam na metade de baixo. */
 .veil {
