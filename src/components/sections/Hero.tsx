@@ -1,36 +1,41 @@
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { WhatsAppGlyph } from "@/components/ui/BrandGlyph";
-import { hero, links } from "@/content/site";
+import { Icon } from "@/components/ui/Icon";
+import { contato, hero } from "@/content/site";
+import { HeroBackground } from "./HeroBackground";
 import { PanelMock } from "./PanelMock";
 import styles from "./Hero.module.css";
 
 export function Hero() {
   return (
     <section id="topo" className={styles.hero}>
-      <div className={`${styles.container} hero-grid`}>
+      <HeroBackground />
+      <div className={styles.inner}>
+        <div className={styles.stage}>
+          <div className={styles.mock}>
+            <PanelMock />
+          </div>
+        </div>
+
         <div className={styles.copy}>
           <Badge tone="laranja">{hero.badge}</Badge>
           <h1 className={styles.title}>{hero.titulo}</h1>
           <p className={styles.sub}>{hero.subtitulo}</p>
           <div className={styles.ctas}>
-            <Button variant="primary" size="lg" href="#contato">
+            <Button
+              variant="primary"
+              size="lg"
+              href="#contato"
+              iconRight={<Icon name="arrow-right" size={20} />}
+            >
               {hero.ctaPrimario}
             </Button>
-            {links.whatsapp ? (
-              <Button
-                variant="secondary"
-                href={links.whatsapp}
-                target="_blank"
-                rel="noreferrer"
-                icon={<WhatsAppGlyph />}
-              >
-                {hero.ctaWhatsapp}
-              </Button>
-            ) : null}
+            <span className={styles.trust}>
+              <Icon name="shield-check" size={18} />
+              {contato.reforco}
+            </span>
           </div>
         </div>
-        <PanelMock />
       </div>
     </section>
   );

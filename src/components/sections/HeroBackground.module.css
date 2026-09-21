@@ -1,0 +1,24 @@
+/* Única exceção do sistema ao "sem gradiente/textura": vale só no hero. */
+.bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 78% 22%, rgba(255, 95, 31, 0.12), transparent 70%),
+    var(--surface-page);
+}
+
+.shader { position: absolute; inset: 0; }
+
+/* Garante contraste do título e do texto de apoio, que ficam na metade de baixo. */
+.veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--surface-page) 0%, transparent 55%);
+}

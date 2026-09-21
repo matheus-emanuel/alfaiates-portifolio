@@ -1,8 +1,8 @@
 import {
-  CalendarCheck, Calculator, ChartNoAxesColumn, Cloud, CreditCard, FileCheck,
+  ArrowRight, CalendarCheck, Calculator, ChartNoAxesColumn, Cloud, CreditCard, FileCheck,
   GraduationCap, HandHeart, HardDrive, HardHat, HeartPulse, LayoutTemplate,
-  Lock, Monitor, Package, Plug, Puzzle, ReceiptText, Ruler, Search,
-  ShieldCheck, Users
+  Lock, Menu, Monitor, Package, Plug, Puzzle, ReceiptText, Ruler, Search,
+  ShieldCheck, Users, X
 } from "lucide-react";
 
 /**
@@ -11,6 +11,7 @@ import {
  * a página inteira; a cor vem de `currentColor`, então quem pinta é o pai.
  */
 const ICONS = {
+  "arrow-right": ArrowRight,
   "calendar-check": CalendarCheck,
   calculator: Calculator,
   "chart-no-axes-column": ChartNoAxesColumn,
@@ -24,6 +25,7 @@ const ICONS = {
   "heart-pulse": HeartPulse,
   "layout-template": LayoutTemplate,
   lock: Lock,
+  menu: Menu,
   monitor: Monitor,
   package: Package,
   plug: Plug,
@@ -32,7 +34,8 @@ const ICONS = {
   ruler: Ruler,
   search: Search,
   "shield-check": ShieldCheck,
-  users: Users
+  users: Users,
+  x: X
 } as const;
 
 export type IconName = keyof typeof ICONS;

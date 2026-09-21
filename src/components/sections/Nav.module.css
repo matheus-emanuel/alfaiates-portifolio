@@ -1,50 +1,49 @@
-/* Único elemento fixo da página. Altura travada em 72px: nada de nav de agência
-   comendo a viewport. */
+/* Único elemento fixo da página: um pill branco que flutua sobre o hero. O
+   wrapper não captura clique, só o pill. */
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
-  background: rgba(251, 247, 242, 0.88);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-hairline);
+  padding-top: var(--space-3);
+  pointer-events: none;
 }
 
-.bar {
+.wrap {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--container-pad);
+}
+
+.bar {
+  pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
   gap: var(--space-4);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
 }
+
+.left { display: flex; align-items: center; gap: var(--space-5); min-width: 0; }
+.right { display: flex; align-items: center; gap: var(--space-3); }
 
 .links { display: flex; gap: var(--space-4); font-size: 15px; }
 .link { color: var(--text-body); text-decoration: none; font-weight: var(--weight-medium); }
 .link:hover { color: var(--action-primary); text-decoration: underline; text-underline-offset: 3px; }
 
-/* Cinco rótulos + CTA não cabem em uma linha no celular. A página inteira é
-   uma rolagem só, então os links saem e o CTA fica. */
+/* Cinco rótulos + CTA não cabem em uma linha no celular: os links saem, o CTA
+   sai, e o menu assume as duas coisas. */
 @media (max-width: 900px) {
   .links { display: none; }
+  .cta { display: none; }
 }
-
-@media (max-width: 620px) {
-  .bar { gap: var(--space-2); }
-}
-
-/* Em telas de 320px a assinatura e um CTA de duas palavras não cabem na mesma
-   linha. O rótulo encurta e o respiro lateral cede; a nav continua em uma
-   linha só, que é o que o sistema pede. */
-.ctaCurto { display: none; }
 
 @media (max-width: 400px) {
-  .bar { padding: 0 var(--space-3); }
-  .ctaLongo { display: none; }
-  .ctaCurto { display: inline; }
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  .header { background: var(--surface-page); backdrop-filter: none; }
+  .wrap { padding: 0 var(--space-3); }
+  .bar { padding-left: var(--space-3); }
 }
