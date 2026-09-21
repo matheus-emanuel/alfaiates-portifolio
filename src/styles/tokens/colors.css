@@ -1,0 +1,49 @@
+:root{
+  /* Base — primária */
+  --laranja-alfaiate:#FF5F1F;
+  --laranja-escuro:#E04E13;
+  --preto-tecido:#1F1A17;
+
+  /* Base — secundária (referências, suavizadas) */
+  --malva-suave:#AB759C;
+  --rosa-envelhecido:#CE9095;
+
+  /* Base — neutros */
+  --fundo-papel:#FBF7F2;
+  --fundo-alternado:#F2EBE3;
+  --cinza-linha:#E4DCD3;
+  --cinza-texto:#6B615A;
+  --branco:#FFFFFF;
+
+  /* Base — semânticas */
+  --verde-confirmacao:#3E8E5C;
+  --vermelho-alerta:#C0472B;
+  --verde-whatsapp:#25D366;
+
+  /* Semantic aliases */
+  --text-body:var(--preto-tecido);
+  --text-muted:var(--cinza-texto);
+  --text-invert:var(--branco);
+  --text-link:var(--laranja-alfaiate);
+  --text-error:var(--vermelho-alerta);
+
+  --surface-page:var(--fundo-papel);
+  --surface-alt:var(--fundo-alternado);
+  --surface-card:var(--branco);
+  --surface-dark:var(--preto-tecido);
+  --surface-soft:var(--rosa-envelhecido);
+
+  --border-hairline:var(--cinza-linha);
+  --border-strong:var(--preto-tecido);
+  --border-focus:var(--laranja-alfaiate);
+
+  --action-primary:var(--laranja-alfaiate);
+  --action-primary-hover:var(--laranja-escuro);
+  --accent-trust:var(--malva-suave);
+  --accent-warm:var(--rosa-envelhecido);
+  /* Rosa escurecido o bastante para passar contraste como cor de ícone e de
+     bullet sobre o card branco. Estava solto no código do kit; virou token. */
+  --accent-warm-ink:#B9676E;
+  --state-success:var(--verde-confirmacao);
+  --state-error:var(--vermelho-alerta);
+}

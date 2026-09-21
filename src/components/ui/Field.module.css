@@ -1,0 +1,30 @@
+/* Label sempre visível acima do campo — nunca placeholder no lugar de label.
+   Foco: borda laranja + glow suave, o único "glow" do sistema. */
+.field { display: flex; flex-direction: column; gap: 8px; }
+
+.label { font-size: 15px; font-weight: var(--weight-semibold); }
+.required { color: var(--state-error); }
+
+.control {
+  width: 100%;
+  background: var(--surface-card);
+  font-family: var(--font-core);
+  font-size: 16px;
+  color: var(--text-body);
+  padding: 12px 14px;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition:
+    border-color var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard);
+}
+.control::placeholder { color: var(--text-muted); }
+.control:focus { border-color: var(--border-focus); box-shadow: var(--shadow-input-focus); }
+.control[aria-invalid="true"] { border-color: var(--state-error); box-shadow: none; }
+
+.textarea { resize: vertical; }
+.select { appearance: none; background-image: none; }
+
+.hint { font-size: 14px; color: var(--text-muted); }
+.error { font-size: 14px; color: var(--state-error); }

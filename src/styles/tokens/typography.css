@@ -1,0 +1,35 @@
+:root{
+  /* As famílias chegam por next/font (self-hosted); os tokens do DS apontam para elas. */
+  --font-core:var(--font-jakarta),"Plus Jakarta Sans","Manrope",system-ui,sans-serif;
+  --font-mono:var(--font-jetbrains),"JetBrains Mono","IBM Plex Mono",ui-monospace,monospace;
+
+  /* Desktop scale */
+  --size-h1:48px;
+  --size-h2:34px;
+  --size-h3:22px;
+  --size-h4:18px;
+  --size-body:17px;
+  --size-caption:14px;
+  --size-mono-sm:15px;
+  --size-mono-lg:28px;
+
+  /* Mobile scale */
+  --size-h1-m:32px;
+  --size-h2-m:26px;
+  --size-h3-m:19px;
+  --size-h4-m:17px;
+  --size-body-m:16px;
+  --size-caption-m:13px;
+
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+
+  --leading-title:1.15;
+  --leading-h3:1.2;
+  --leading-body:1.5;
+  --measure-body:65ch;
+  --tracking-title:-0.02em;
+  --tracking-eyebrow:0.08em;
+}

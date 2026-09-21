@@ -1,0 +1,22 @@
+/* Lista costurada, não grade de cards: a página já usa grade de ServiceCard em
+   Serviços e em O que a gente entrega, e a terceira repetição achata o ritmo. */
+.rows { display: flex; flex-direction: column; }
+
+.row { display: flex; gap: var(--space-4); align-items: flex-start; padding: var(--space-5) 0; border-top: 2px dashed var(--border-hairline); }
+.row:first-child { padding-top: 0; border-top: none; }
+
+.chip { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-sm); flex: none; }
+.malva { background: rgba(171, 117, 156, 0.14); color: var(--accent-trust); }
+.rosa { background: rgba(206, 144, 149, 0.2); color: var(--accent-warm-ink); }
+.primary { background: rgba(255, 95, 31, 0.1); color: var(--action-primary); }
+
+.body { display: flex; flex-direction: column; gap: var(--space-2); }
+.title { margin: 0; font-size: var(--size-h3); font-weight: var(--weight-semibold); }
+.benefit { margin: 0; color: var(--text-muted); }
+
+.bullets { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.bullet { display: flex; gap: 10px; align-items: baseline; font-size: 16px; }
+.dot { width: 6px; height: 6px; border-radius: var(--radius-full); flex: none; transform: translateY(-2px); }
+.dotMalva { background: var(--accent-trust); }
+.dotRosa { background: var(--accent-warm-ink); }
+.dotPrimary { background: var(--action-primary); }

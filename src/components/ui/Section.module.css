@@ -1,0 +1,13 @@
+/* Faixa de seção: container central de 1140px e 96px de respiro vertical
+   (56px no celular). A zebra papel/alternado é o que dá ritmo à página;
+   `escuro` existe uma única vez, no CTA final. */
+.section { padding: var(--section-y) 0; }
+.papel { background: var(--surface-page); color: var(--text-body); }
+.alternado { background: var(--surface-alt); color: var(--text-body); }
+.escuro { background: var(--surface-dark); color: var(--text-invert); }
+
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad); }
+
+@media (max-width: 900px) {
+  .section { padding: var(--section-y-m) 0; }
+}

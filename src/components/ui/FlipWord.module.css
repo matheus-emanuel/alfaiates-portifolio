@@ -1,0 +1,83 @@
+/* Painel split-flap: as palavras se alternam virando letra por letra, como os
+   painéis de partida de aeroporto. A medida da aleta é CSS, não JavaScript —
+   sem isso, "Sistema caro" estoura a largura da tela no celular. */
+.panel {
+  --flap: 64px;
+  --flap-w: calc(var(--flap) * 0.68);
+  display: inline-flex;
+  gap: 3px;
+  padding: 7px;
+  border-radius: 6px;
+  max-width: 100%;
+  background: linear-gradient(180deg, var(--preto-tecido), #151110);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 10px 26px rgba(31, 26, 23, 0.22);
+  vertical-align: middle;
+}
+
+@media (max-width: 900px) { .panel { --flap: 40px; } }
+@media (max-width: 620px) { .panel { --flap: 26px; } }
+
+.flap {
+  position: relative;
+  display: inline-block;
+  width: var(--flap-w);
+  height: var(--flap);
+  perspective: calc(var(--flap) * 3);
+  flex: none;
+}
+
+.half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+
+/* Tons da aleta: o preto-tecido em duas faces, a de cima mais clara. */
+.top { top: 0; background: linear-gradient(180deg, #3a312b, #272120); border-radius: 3px 3px 0 0; }
+.bottom { bottom: 0; background: linear-gradient(180deg, #221d1b, #171311); border-radius: 0 0 3px 3px; }
+
+.glyph {
+  position: absolute;
+  line-height: var(--flap);
+  height: var(--flap);
+  font-family: var(--font-mono);
+  font-weight: var(--weight-bold);
+  font-size: calc(var(--flap) * 0.62);
+  color: var(--text-invert);
+  letter-spacing: 0.01em;
+}
+.glyphTop { top: 0; }
+.glyphBottom { bottom: 0; }
+
+.flipTop { transform-origin: 50% 100%; animation: sfTop 28ms cubic-bezier(0.4, 0, 0.9, 0.5) forwards; z-index: 2; }
+.flipBottom { transform-origin: 50% 0%; animation: sfBottom 28ms cubic-bezier(0.1, 0.5, 0.4, 1) 28ms both; z-index: 3; }
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 46%, rgba(0, 0, 0, 0.22) 52%, rgba(0, 0, 0, 0) 100%);
+}
+.seam { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, 0.55); z-index: 4; }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes sfTop { from { transform: rotateX(0); } to { transform: rotateX(-90deg); } }
+@keyframes sfBottom { from { transform: rotateX(90deg); } to { transform: rotateX(0); } }

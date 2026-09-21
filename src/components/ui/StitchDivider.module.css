@@ -1,0 +1,13 @@
+/* Divisor de costura: o motivo de alfaiataria da marca. */
+.stitch { display: flex; align-items: center; gap: var(--space-3); width: 100%; }
+.line { flex: 1; height: 0; border-top: 2px dashed var(--border-hairline); }
+.malva .line { border-top-color: rgba(171, 117, 156, 0.55); }
+.laranja .line { border-top-color: rgba(255, 95, 31, 0.45); }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}

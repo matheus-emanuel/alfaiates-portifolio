@@ -1,0 +1,11 @@
+.link { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+
+/* URL ainda não entregue (ver content/site.ts). O rótulo continua legível, mas
+   não finge ser link. Dois seletores de classe de propósito: assim o estado
+   pendente ganha de qualquer classe que a seção passe por cima. */
+.link.pendente {
+  color: var(--text-muted);
+  cursor: not-allowed;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}

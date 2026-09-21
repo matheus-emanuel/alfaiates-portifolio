@@ -1,0 +1,17 @@
+.item { display: flex; gap: var(--space-3); align-items: flex-start; }
+
+/* Malva carrega confiança no sistema: é o tom desta seção. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  flex: none;
+  background: rgba(171, 117, 156, 0.14);
+  color: var(--accent-trust);
+}
+.body { display: flex; flex-direction: column; gap: 4px; }
+.title { margin: 0; font-weight: var(--weight-semibold); font-size: var(--size-h4); }
+.desc { margin: 0; font-size: 16px; color: var(--text-muted); }

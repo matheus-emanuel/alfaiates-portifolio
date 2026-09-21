@@ -1,0 +1,11 @@
+.footer { background: var(--surface-dark); color: var(--text-invert); padding-bottom: var(--space-6); }
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad); display: flex; flex-direction: column; gap: var(--space-4); }
+
+.row { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: space-between; align-items: center; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+.tagline { font-size: 14px; color: rgba(255, 255, 255, 0.62); }
+
+.social { font-size: 14px; color: var(--accent-warm); text-decoration: none; }
+.social:hover { color: var(--accent-warm); text-decoration: underline; text-underline-offset: 3px; }
+
+.legal { font-size: 13px; color: rgba(255, 255, 255, 0.45); }

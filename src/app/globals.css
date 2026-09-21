@@ -1,0 +1,74 @@
+/* Design system Alfaiates Sistemas — tokens primeiro, depois base e utilitários
+   de layout da página. Nenhum valor de marca é escrito fora de tokens/. */
+@import "../styles/tokens/colors.css";
+@import "../styles/tokens/typography.css";
+@import "../styles/tokens/spacing.css";
+@import "../styles/tokens/radius.css";
+@import "../styles/tokens/shadows.css";
+@import "../styles/tokens/base.css";
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* A nav é o único elemento fixo: as âncoras precisam parar abaixo dela. */
+section[id],
+footer[id] { scroll-margin-top: 88px; }
+
+body { min-height: 100dvh; }
+
+/* Utilitários de grade da página. Toda grade colapsa para uma coluna em < 900px:
+   mobile-first é requisito do sistema, não opção. */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-7); align-items: center; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap) var(--space-6); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); align-items: start; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--grid-gap); }
+/* Sem `align-items: stretch` na coluna da esquerda o sticky não tem curso. */
+.split-sticky { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: var(--space-7); align-items: stretch; }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: var(--space-7); align-items: start; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: var(--space-7); align-items: start; }
+
+.stack { display: flex; flex-direction: column; }
+.stack-2 { gap: var(--space-2); }
+.stack-3 { gap: var(--space-3); }
+.stack-4 { gap: var(--space-4); }
+.stack-5 { gap: var(--space-5); }
+.stack-6 { gap: var(--space-6); }
+.stack-7 { gap: var(--space-7); }
+.align-start { align-items: flex-start; }
+
+.sticky-head { position: sticky; top: calc(72px + var(--space-4)); }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 50;
+  background: var(--surface-card); color: var(--text-body);
+  padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md); font-weight: var(--weight-semibold);
+}
+.skip-link:focus { left: var(--container-pad); top: var(--container-pad); }
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .split-sticky,
+  .about-grid,
+  .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .sticky-head { position: static; }
+}
+
+/* O sistema pede animação discreta e funcional; quem pediu menos movimento
+   recebe a página parada, sem perder nenhum estado. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

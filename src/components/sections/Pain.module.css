@@ -1,0 +1,19 @@
+.title { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+
+.list {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-6);
+  max-width: 880px;
+}
+.item { display: flex; gap: 12px; align-items: flex-start; }
+
+/* O traço pontilhado é o motivo de costura pedido para a seção de dor. */
+.stitch { width: 18px; height: 0; border-top: 2px dashed var(--text-muted); margin-top: 14px; flex: none; }
+
+@media (max-width: 900px) {
+  .list { grid-template-columns: minmax(0, 1fr); }
+}

@@ -1,0 +1,88 @@
+/* Botão do sistema. O hover, o press e o foco são CSS puro: nenhum estado de
+   interação precisa de JavaScript, então o botão roda como Server Component. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-core);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  border-radius: var(--radius-full);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard),
+    box-shadow var(--dur-base) var(--ease-standard),
+    transform var(--dur-base) var(--ease-standard);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] { opacity: 0.4; cursor: not-allowed; }
+
+.sm { padding: 10px 18px; font-size: 15px; }
+.md { padding: 16px 28px; font-size: 17px; }
+.lg { padding: 18px 32px; font-size: 18px; }
+
+.fullWidth { width: 100%; }
+
+/* ---- primário: laranja, pill, o único caminho de conversão ---- */
+.primary {
+  background: var(--action-primary);
+  color: var(--text-invert);
+  box-shadow: var(--shadow-sm);
+}
+.primary:hover:not(:disabled) {
+  background: var(--action-primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: var(--lift-hover);
+  color: var(--text-invert);
+  text-decoration: none;
+}
+/* O lift do hover é cancelado no press: volta ao plano, sem encolher. */
+.primary:active:not(:disabled) { transform: none; }
+
+/* ---- secundário: contorno, anda ao lado do primário ---- */
+.secondary {
+  background: transparent;
+  color: var(--text-body);
+  border-color: var(--border-strong);
+}
+.secondary:hover:not(:disabled) {
+  box-shadow: var(--shadow-sm);
+  color: var(--text-body);
+  text-decoration: none;
+}
+
+/* Mesmo botão sobre a faixa escura do CTA final. */
+.invert { color: var(--text-invert); border-color: rgba(255, 255, 255, 0.45); }
+.invert:hover:not(:disabled) { color: var(--text-invert); border-color: rgba(255, 255, 255, 0.75); }
+
+/* ---- terciário: link de texto dentro de conteúdo ---- */
+.tertiary {
+  background: transparent;
+  color: var(--action-primary);
+  padding-left: 0;
+  padding-right: 0;
+  text-underline-offset: 3px;
+}
+.tertiary.sm { padding: 4px 0; }
+.tertiary.md,
+.tertiary.lg { padding: 6px 0; }
+.tertiary:hover:not(:disabled) { color: var(--action-primary-hover); text-decoration: underline; }
+
+.iconLeft,
+.iconRight { display: inline-flex; flex: none; }
+
+.iconRight { transition: transform var(--dur-fast) var(--ease-standard); }
+.btn:hover .iconRight { transform: translateX(2px); }
+
+/* No celular o rótulo longo do CTA principal não cabe em uma linha só. Em vez
+   de estourar a largura da tela, o botão vira bloco e o texto quebra. */
+@media (max-width: 620px) {
+  .btn.lg,
+  .btn.md { white-space: normal; text-align: center; }
+}

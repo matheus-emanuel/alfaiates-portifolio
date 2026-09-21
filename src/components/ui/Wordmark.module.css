@@ -1,0 +1,15 @@
+/* O projeto não recebeu arquivo de logo: a marca é composta tipograficamente. */
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3em;
+  font-family: var(--font-core);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-body);
+  text-decoration: none;
+}
+.invert { color: var(--text-invert); }
+.second { font-weight: var(--weight-medium); letter-spacing: -0.01em; color: var(--action-primary); }
+.invert .second { color: var(--accent-warm); }

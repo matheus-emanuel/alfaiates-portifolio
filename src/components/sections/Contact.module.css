@@ -1,0 +1,15 @@
+.copy { display: flex; flex-direction: column; gap: var(--stack-gap); align-items: flex-start; }
+.reforco { display: flex; align-items: center; gap: 10px; font-size: 15px; color: rgba(255, 255, 255, 0.72); }
+
+/* A caixa do formulário volta ao papel dentro da faixa escura: o campo de
+   preenchimento precisa do contraste de sempre. */
+.box {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  color: var(--text-body);
+}
+
+@media (max-width: 620px) {
+  .copy > a { width: 100%; }
+}

@@ -1,0 +1,26 @@
+.eyebrow {
+  font-size: 13px;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.title { margin: 0; max-width: 16ch; }
+.body { margin: 0; color: var(--text-muted); }
+
+/* A metáfora da alfaiataria ganha o card branco e o tracejado de costura: é o
+   único lugar da seção com moldura, e é o trecho que carrega a marca. */
+.metafora { display: flex; flex-direction: column; gap: var(--space-3); }
+.fecho { margin: 0; font-weight: var(--weight-semibold); }
+
+.social { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); }
+
+/* O time respira no papel, sem card: separa esta seção das grades de serviço. */
+.pessoa { display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start; }
+.foto { border: 1px solid var(--border-hairline); }
+.nome { margin: 0; font-size: var(--size-h3); font-weight: var(--weight-semibold); }
+
+.perfis { display: flex; align-items: center; gap: var(--space-3); }
+.perfil { font-size: 15px; color: var(--action-primary); font-weight: var(--weight-semibold); text-decoration: none; }
+.perfil:hover { color: var(--action-primary-hover); text-decoration: underline; text-underline-offset: 3px; }
+.separador { width: 1px; height: 16px; background: var(--border-hairline); }

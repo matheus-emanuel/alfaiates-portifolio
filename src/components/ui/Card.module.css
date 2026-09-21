@@ -1,0 +1,26 @@
+/* Base de todos os cards: branco puro, hairline, radius 16, shadow-sm em repouso. */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--dur-base) var(--ease-standard),
+    border-color var(--dur-base) var(--ease-standard),
+    transform var(--dur-base) var(--ease-standard);
+}
+
+/* Card clicável: eleva 2px, troca para shadow-md, borda vira laranja a 30%.
+   `focus-within` garante o mesmo destaque para quem navega por teclado. */
+.interactive:hover,
+.interactive:focus-within {
+  border-color: rgba(255, 95, 31, 0.3);
+  box-shadow: var(--shadow-md);
+  transform: var(--lift-hover);
+}
+.interactive:active { transform: none; }
+
+.flush { padding: 0; }
+.roomy { padding: var(--space-5); }
+.radiusLg { border-radius: var(--radius-lg); }

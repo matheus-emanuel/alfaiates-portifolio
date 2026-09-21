@@ -1,0 +1,19 @@
+:root{
+  /* Escala base 8px */
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:16px;
+  --space-4:24px;
+  --space-5:32px;
+  --space-6:48px;
+  --space-7:64px;
+  --space-8:96px;
+  --space-9:128px;
+
+  --section-y:96px;
+  --section-y-m:56px;
+  --grid-gap:24px;
+  --stack-gap:24px;
+  --container-max:1140px;
+  --container-pad:24px;
+}

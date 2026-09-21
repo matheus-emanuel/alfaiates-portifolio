@@ -1,0 +1,17 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: var(--weight-semibold);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.malva { background: rgba(171, 117, 156, 0.16); color: #7e4e71; }
+.rosa { background: rgba(206, 144, 149, 0.22); color: #9a5c61; }
+.laranja { background: rgba(255, 95, 31, 0.12); color: var(--action-primary-hover); }
+.sucesso { background: rgba(62, 142, 92, 0.14); color: var(--state-success); }
+.neutro { background: var(--surface-alt); color: var(--text-muted); }

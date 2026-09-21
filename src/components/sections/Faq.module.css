@@ -1,0 +1,43 @@
+/* Accordion nativo: <details> abre e fecha sem JavaScript, já vem com teclado
+   e leitor de tela corretos. A aparência é a mesma do sistema. */
+.item { border-bottom: 1px solid var(--border-hairline); }
+
+.question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  cursor: pointer;
+  padding: var(--space-4) 0;
+  font-family: var(--font-core);
+  font-size: var(--size-h3);
+  font-weight: var(--weight-semibold);
+  color: var(--text-body);
+  line-height: 1.25;
+  list-style: none;
+}
+.question::-webkit-details-marker { display: none; }
+.question:hover { color: var(--action-primary-hover); }
+
+.sign {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  color: var(--action-primary);
+  border: 1.5px solid rgba(255, 95, 31, 0.4);
+  transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
+}
+.item[open] .sign { background: var(--action-primary); color: var(--text-invert); border-color: transparent; }
+
+.sign::after { content: "+"; }
+.item[open] .sign::after { content: "−"; }
+
+.answer { padding-bottom: var(--space-4); color: var(--text-muted); max-width: var(--measure-body); margin: 0; }
