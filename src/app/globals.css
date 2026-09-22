@@ -52,13 +52,13 @@ body { min-height: 100dvh; }
   z-index: -1;
   pointer-events: none;
   background-image:
-    radial-gradient(ellipse 48% 20% at 4% 8%, rgba(255, 95, 31, var(--o1)), transparent 70%),
-    radial-gradient(ellipse 50% 20% at 96% 22%, rgba(255, 95, 31, var(--o2)), transparent 70%),
-    radial-gradient(ellipse 46% 20% at 14% 48%, rgba(255, 95, 31, var(--o3)), transparent 70%),
-    radial-gradient(ellipse 46% 20% at 86% 60%, rgba(255, 95, 31, var(--o4)), transparent 70%),
-    radial-gradient(ellipse 44% 18% at 42% 34%, rgba(255, 95, 31, var(--o5)), transparent 70%),
-    radial-gradient(ellipse 48% 20% at 50% 88%, rgba(255, 95, 31, var(--o6)), transparent 70%),
-    radial-gradient(ellipse 44% 20% at 70% 74%, rgba(206, 144, 149, 0.22), transparent 70%);
+    radial-gradient(ellipse 48% 20% at 4% 8%, rgba(255, 95, 31, var(--o1)) 0%, rgba(255, 95, 31, calc(var(--o1) * 0.55)) 38%, rgba(255, 95, 31, calc(var(--o1) * 0.2)) 62%, transparent 85%),
+    radial-gradient(ellipse 50% 20% at 96% 22%, rgba(255, 95, 31, var(--o2)) 0%, rgba(255, 95, 31, calc(var(--o2) * 0.55)) 38%, rgba(255, 95, 31, calc(var(--o2) * 0.2)) 62%, transparent 85%),
+    radial-gradient(ellipse 46% 20% at 14% 48%, rgba(255, 95, 31, var(--o3)) 0%, rgba(255, 95, 31, calc(var(--o3) * 0.55)) 38%, rgba(255, 95, 31, calc(var(--o3) * 0.2)) 62%, transparent 85%),
+    radial-gradient(ellipse 46% 20% at 86% 60%, rgba(255, 95, 31, var(--o4)) 0%, rgba(255, 95, 31, calc(var(--o4) * 0.55)) 38%, rgba(255, 95, 31, calc(var(--o4) * 0.2)) 62%, transparent 85%),
+    radial-gradient(ellipse 44% 18% at 42% 34%, rgba(255, 95, 31, var(--o5)) 0%, rgba(255, 95, 31, calc(var(--o5) * 0.55)) 38%, rgba(255, 95, 31, calc(var(--o5) * 0.2)) 62%, transparent 85%),
+    radial-gradient(ellipse 48% 20% at 50% 88%, rgba(255, 95, 31, var(--o6)) 0%, rgba(255, 95, 31, calc(var(--o6) * 0.55)) 38%, rgba(255, 95, 31, calc(var(--o6) * 0.2)) 62%, transparent 85%),
+    radial-gradient(ellipse 44% 20% at 70% 74%, rgba(206, 144, 149, 0.22) 0%, rgba(206, 144, 149, 0.09) 45%, transparent 85%);
   background-size: 100% 820px;
   background-repeat: repeat-y;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 100vh, #000 calc(100vh + 360px));
