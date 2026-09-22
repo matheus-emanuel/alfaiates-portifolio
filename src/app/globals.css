@@ -30,6 +30,64 @@ body { min-height: 100dvh; }
 .about-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: var(--space-7); align-items: start; }
 .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 440px); gap: var(--space-7); align-items: start; }
 
+/* Fundo único da página: o `::before` desce com o conteúdo e repete um ladrilho
+   de 6 pontos laranja (das pontas do ladrilho até o centro dele) + 1 rosa. Cada
+   ponto é uma custom property (`@property`, por isso anima com transição suave
+   em vez de saltar) que pulsa em ciclo próprio — duração e atraso diferentes,
+   então nunca acendem juntos. As formas continuam as mesmas elipses de sempre;
+   só a opacidade de cada uma pulsa.
+   `--o1`/`--o2` ficam nas pontas do ladrilho, `--o5`/`--o6` perto do centro. */
+@property --o1 { syntax: "<number>"; inherits: false; initial-value: 0.05; }
+@property --o2 { syntax: "<number>"; inherits: false; initial-value: 0.05; }
+@property --o3 { syntax: "<number>"; inherits: false; initial-value: 0.05; }
+@property --o4 { syntax: "<number>"; inherits: false; initial-value: 0.05; }
+@property --o5 { syntax: "<number>"; inherits: false; initial-value: 0.05; }
+@property --o6 { syntax: "<number>"; inherits: false; initial-value: 0.05; }
+
+.page { position: relative; isolation: isolate; overflow: clip; }
+.page::before {
+  content: "";
+  position: absolute;
+  inset: -60px 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 48% 20% at 4% 8%, rgba(255, 95, 31, var(--o1)), transparent 70%),
+    radial-gradient(ellipse 50% 20% at 96% 22%, rgba(255, 95, 31, var(--o2)), transparent 70%),
+    radial-gradient(ellipse 46% 20% at 14% 48%, rgba(255, 95, 31, var(--o3)), transparent 70%),
+    radial-gradient(ellipse 46% 20% at 86% 60%, rgba(255, 95, 31, var(--o4)), transparent 70%),
+    radial-gradient(ellipse 44% 18% at 42% 34%, rgba(255, 95, 31, var(--o5)), transparent 70%),
+    radial-gradient(ellipse 48% 20% at 50% 88%, rgba(255, 95, 31, var(--o6)), transparent 70%),
+    radial-gradient(ellipse 44% 20% at 70% 74%, rgba(206, 144, 149, 0.22), transparent 70%);
+  background-size: 100% 820px;
+  background-repeat: repeat-y;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 100vh, #000 calc(100vh + 360px));
+  mask-image: linear-gradient(to bottom, transparent 0, transparent 100vh, #000 calc(100vh + 360px));
+  animation:
+    pageDrift 26s ease-in-out infinite alternate,
+    glowPulse1 8s ease-in-out 0s infinite,
+    glowPulse2 9.5s ease-in-out 0.8s infinite,
+    glowPulse3 7.5s ease-in-out 2.2s infinite,
+    glowPulse4 10s ease-in-out 3s infinite,
+    glowPulse5 8.5s ease-in-out 4.5s infinite,
+    glowPulse6 9s ease-in-out 5.8s infinite;
+  will-change: transform;
+}
+@keyframes pageDrift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, 56px, 0); }
+}
+
+/* Um `@keyframes` por ponto: cada um anima só a sua custom property, em ciclo
+   próprio. Pico em 45–55% (não exatamente na metade) pra tirar a simetria
+   perfeita entre subida e descida de cada pulso. */
+@keyframes glowPulse1 { 0% { --o1: 0.05; } 48% { --o1: 0.24; } 100% { --o1: 0.05; } }
+@keyframes glowPulse2 { 0% { --o2: 0.05; } 52% { --o2: 0.24; } 100% { --o2: 0.05; } }
+@keyframes glowPulse3 { 0% { --o3: 0.05; } 45% { --o3: 0.2; } 100% { --o3: 0.05; } }
+@keyframes glowPulse4 { 0% { --o4: 0.05; } 55% { --o4: 0.2; } 100% { --o4: 0.05; } }
+@keyframes glowPulse5 { 0% { --o5: 0.05; } 50% { --o5: 0.18; } 100% { --o5: 0.05; } }
+@keyframes glowPulse6 { 0% { --o6: 0.05; } 47% { --o6: 0.22; } 100% { --o6: 0.05; } }
+
 .stack { display: flex; flex-direction: column; }
 .stack-2 { gap: var(--space-2); }
 .stack-3 { gap: var(--space-3); }

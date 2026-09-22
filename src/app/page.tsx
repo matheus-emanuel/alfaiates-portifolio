@@ -14,9 +14,8 @@ import { Footer } from "@/components/sections/Footer";
 import { site } from "@/content/site";
 
 /**
- * Ritmo de fundo (zebra): papel → alternado → papel → alternado → papel →
- * alternado → papel → alternado → papel → alternado → escuro. Uma seção nova
- * entra respeitando a alternância, e só o CTA final é escuro.
+ * Fundo: uma cor só (papel) com o gradiente contínuo de `.page`. Só o hero
+ * (fundo próprio) e o CTA final (escuro) têm superfície opaca.
  */
 export default function Home() {
   const jsonLd = {
@@ -37,7 +36,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Nav />
-      <main>
+      <main className="page">
         <Hero />
         <Pain />
         <Differentiators />
