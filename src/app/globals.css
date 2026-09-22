@@ -34,18 +34,20 @@ body { min-height: 100dvh; }
    de três halos parados (2 laranja + 1 rosa). Nada pulsa: qualquer opacidade
    alta o bastante pra "acender" também é alta o bastante pra revelar o
    contorno da elipse contra o papel liso — testamos e o pulso não escapa
-   dessa troca, então o brilho fica quieto, só a posição deriva com o scroll. */
+   dessa troca, então o brilho fica quieto, só a posição deriva com o scroll.
+   Exceção controlada: a mancha laranja mais forte (a que sobrou no `::after`)
+   respira via `filter: brightness()`, não `scale`/`opacity` — brightness só
+   multiplica RGB, nunca o alfa, então o contorno onde ela já esmaece pra
+   transparente não se move nem acende. Ainda é teste: só essa, as outras
+   duas continuam paradas. */
 .page { position: relative; isolation: isolate; overflow: clip; }
-.page::before {
+.page::before,
+.page::after {
   content: "";
   position: absolute;
   inset: -60px 0;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    radial-gradient(ellipse 50% 20% at 90% 24%, rgba(255, 95, 31, 0.2), transparent 70%),
-    radial-gradient(ellipse 46% 20% at 6% 52%, rgba(206, 144, 149, 0.24), transparent 70%),
-    radial-gradient(ellipse 48% 20% at 34% 80%, rgba(255, 95, 31, 0.17), transparent 70%);
   background-size: 100% 1100px;
   background-repeat: repeat-y;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 100vh, #000 calc(100vh + 360px));
@@ -53,10 +55,25 @@ body { min-height: 100dvh; }
   animation: pageDrift 26s ease-in-out infinite alternate;
   will-change: transform;
 }
+.page::before {
+  background-image:
+    radial-gradient(ellipse 46% 20% at 6% 52%, rgba(206, 144, 149, 0.24), transparent 70%),
+    radial-gradient(ellipse 48% 20% at 34% 80%, rgba(255, 95, 31, 0.17), transparent 70%);
+}
+.page::after {
+  background-image: radial-gradient(ellipse 50% 20% at 90% 24%, rgba(255, 95, 31, 0.2), transparent 70%);
+  animation: pageDrift 26s ease-in-out infinite alternate, pageBreathe 4s ease-in-out infinite;
+  will-change: transform, filter;
+}
 
 @keyframes pageDrift {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(0, 56px, 0); }
+}
+
+@keyframes pageBreathe {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.6); }
 }
 
 .stack { display: flex; flex-direction: column; }

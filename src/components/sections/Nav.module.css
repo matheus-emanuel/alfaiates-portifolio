@@ -60,11 +60,39 @@
 .dark .link { color: var(--text-invert); }
 .dark .link:hover { color: var(--accent-warm); }
 
+/* O rótulo do CTA encolhe junto com o `--nav-chrome` do header (mesma
+   variável que esvai o fundo do pill): no topo, texto cheio; sem fundo,
+   só sobra o círculo verde do WhatsApp — encolhendo da direita pra
+   esquerda, sem o ícone se mexer. Isso exige separar duas coisas: o
+   `.ctaSlot` reserva o espaço da largura cheia no layout (senão o resto da
+   nav "pularia" pra direita conforme o botão encolhe, já que `.bar` ancora
+   `.right` pela borda direita via space-between); dentro dele, `.cta` vira
+   `position: absolute` grudado em `left: 0` — sua própria largura ainda
+   encolhe com o conteúdo, só que agora encolhendo a partir da borda
+   DIREITA (a esquerda está fixa no `left: 0`), em vez de reposicionar o
+   botão inteiro. */
+.ctaSlot { position: relative; width: 262px; height: 42px; flex: none; }
+.bar .cta {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  justify-content: flex-start;
+  gap: calc(var(--nav-chrome, 1) * 10px);
+}
+.ctaLabel {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: calc(var(--nav-chrome, 1) * 200px);
+  opacity: var(--nav-chrome, 1);
+}
+
 /* Cinco rótulos + CTA não cabem em uma linha no celular: os links saem, o CTA
    sai, e o menu assume as duas coisas. */
 @media (max-width: 900px) {
   .links { display: none; }
-  .cta { display: none; }
+  .ctaSlot { display: none; }
 }
 
 @media (max-width: 400px) {

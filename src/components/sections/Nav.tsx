@@ -87,18 +87,20 @@ export function Nav() {
 
           <div className={styles.right}>
             {links.whatsapp ? (
-              <Button
-                variant="secondary"
-                size="sm"
-                href={links.whatsapp}
-                target="_blank"
-                rel="noreferrer"
-                icon={<WhatsAppGlyph />}
-                className={styles.cta}
-                invert={dark}
-              >
-                Falar agora no WhatsApp
-              </Button>
+              <div className={styles.ctaSlot}>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  href={links.whatsapp}
+                  target="_blank"
+                  rel="noreferrer"
+                  icon={<WhatsAppGlyph />}
+                  className={styles.cta}
+                  invert={dark}
+                >
+                  <span className={styles.ctaLabel}>Falar agora no WhatsApp</span>
+                </Button>
+              </div>
             ) : null}
             <MobileMenu />
           </div>
