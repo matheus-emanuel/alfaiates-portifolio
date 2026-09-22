@@ -14,6 +14,8 @@ export function TrustItem({ icon, title, description, open, onOpen }: TrustItemP
     <button
       type="button"
       className={`${styles.item} ${open ? styles.open : ""}`}
+      onMouseEnter={onOpen}
+      onFocus={onOpen}
       onClick={onOpen}
       aria-expanded={open}
     >

@@ -7,17 +7,19 @@ import styles from "./Timeline.module.css";
 
 const TOTAL = comoFunciona.passos.length;
 
-/** Distância de rolagem em que a linha se desenha por completo. Fixa, e não
- * a altura do bloco: os quatro passos juntos medem só ~200px, e usar a
- * própria altura fazia o traço pular de 0 a 100% numa rolagem de nada. */
-const FAIXA = 960;
-
-/** Progresso de 0 a 1 conforme o topo do bloco atravessa uma linha de leitura
- * fixa (65% da tela) ao longo de `FAIXA` pixels de rolagem. */
+/** Progresso de 0 a 1: começa quando o TOPO do bloco cruza uma linha de
+ * leitura a 65% da tela, termina quando a BASE do bloco cruza uma segunda
+ * linha a 30% — ainda claramente visível, na metade de cima da tela, bem
+ * longe de sumir. As duas linhas são pontos fixos da tela (não uma fração
+ * da altura do bloco): a base só coincidir com "quase saindo" foi o que
+ * fazia o traço terminar de desenhar tarde demais pra notar. */
 function progressoDeLeitura(el: HTMLElement) {
   const r = el.getBoundingClientRect();
-  const linha = (window.innerHeight || 800) * 0.65;
-  return Math.min(1, Math.max(0, (linha - r.top) / FAIXA));
+  const vh = window.innerHeight || 800;
+  const linha = vh * 0.65;
+  const saida = vh * 0.3;
+  const faixa = linha - saida + r.height;
+  return Math.min(1, Math.max(0, (linha - r.top) / faixa));
 }
 
 export function Timeline() {

@@ -41,15 +41,18 @@
 .body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .title { font-weight: var(--weight-semibold); font-size: var(--size-h4); }
 
+/* Altura sempre reservada (nunca max-height: 0): só a opacidade troca.
+   Como agora é hover — passar o mouse por vários cartões em sequência —,
+   uma altura que aparece/some junto fazia a fileira inteira crescer e
+   encolher a cada passagem, empurrando a seção seguinte pra cima e pra
+   baixo. Com a altura fixa, só a largura (flex-grow) muda. */
 .desc {
   font-size: 16px;
   color: var(--text-muted);
-  max-height: 0;
   opacity: 0;
-  overflow: hidden;
-  transition: max-height 420ms var(--ease-standard), opacity 240ms var(--ease-standard);
+  transition: opacity var(--dur-base) var(--ease-standard);
 }
-.item.open .desc { max-height: 140px; opacity: 1; transition-delay: 0ms, 120ms; }
+.item.open .desc { opacity: 1; transition-delay: 80ms; }
 
 @media (max-width: 900px) {
   .item { flex-basis: auto; }

@@ -1,12 +1,18 @@
 /* Mesmo vocabulário visual de um card: fundo branco, hairline, shadow-sm. */
 .janela {
+  /* content-box: a altura calculada em JS (`item.offsetHeight`) descreve só
+     o texto. Com o border-box global, esse valor virava a altura TOTAL da
+     caixa e o padding roubava espaço do texto, espremendo e descentralizando
+     a palavra. Em content-box o padding só soma por fora, como esperado. */
+  box-sizing: content-box;
   display: inline-flex;
   align-items: flex-start;
   overflow: hidden;
   background: var(--surface-card);
   border: 1px solid var(--border-hairline);
   border-radius: var(--radius-sm);
-  padding: 2px 18px;
+  /* Mais respiro embaixo que em cima: centraliza a palavra na forma. */
+  padding: 2px 18px 9px;
   box-shadow: var(--shadow-sm);
   vertical-align: middle;
 }
@@ -14,7 +20,9 @@
 .fita { display: flex; flex-direction: column; }
 
 .item {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--action-primary);
   font-weight: var(--weight-bold);
   white-space: nowrap;

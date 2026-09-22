@@ -12,36 +12,49 @@ type Item = (typeof diferenciais)["itens"][number];
 
 /**
  * Cartões que empilham: todos grudam no mesmo `top` (`position: sticky`),
- * sem vão nem sobreposição entre eles no repouso. É a física do próprio
- * sticky que faz o resto: quando o de cima já está grudado, o de baixo
- * nasce exatamente na borda inferior dele (fluxo normal, sem gap) e sobe
- * naturalmente por cima conforme a rolagem continua — cobrir de propósito
- * com margem negativa faria isso acontecer de uma vez, antes mesmo da
- * seção começar a rolar. O JavaScript só mede o quanto o próximo já
- * alcançou o de baixo, e aplica escala + escurecimento proporcionais.
+ * sem vão nem sobreposição entre eles no repouso.
+ *
+ * O progresso de cada cartão não é medido pela posição atual do próximo
+ * (isso dependia do próprio `sticky` do vizinho, que só reflete sua posição
+ * "real" enquanto grudado — rolando pra baixo, uma leitura ficava sempre um
+ * quadro atrás, e o efeito só aparecia perto do fim). Em vez disso, mede-se
+ * a posição NATURAL de cada cartão (a que ele teria sem `sticky`, lida uma
+ * única vez com `position: static`) e compara com a rolagem atual da
+ * página — puramente `scrollY`, sem depender do estado de mais nada.
  */
 export function StackCards({ itens }: { itens: readonly Item[] }) {
   const stackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const naturaisRef = useRef<number[]>([]);
 
   useEffect(() => {
+    const stack = stackRef.current;
+    if (!stack) return;
+    const stickyTop = parseFloat(getComputedStyle(stack).getPropertyValue("--stack-top")) || 96;
+
+    const medirNaturais = () => {
+      naturaisRef.current = cardRefs.current.map((el) => {
+        if (!el) return 0;
+        const antes = el.style.position;
+        el.style.position = "static";
+        const y = el.getBoundingClientRect().top + window.scrollY;
+        el.style.position = antes;
+        return y;
+      });
+    };
+
     let ticking = false;
-
     const apply = () => {
-      const stack = stackRef.current;
-      const stickyTop = (stack && parseFloat(getComputedStyle(stack).getPropertyValue("--stack-top"))) || 96;
-
+      const naturais = naturaisRef.current;
       for (let i = 0; i < itens.length - 1; i++) {
         const card = cardRefs.current[i];
-        const next = cardRefs.current[i + 1];
-        if (!card || !next) continue;
+        if (!card) continue;
 
         const cardH = card.offsetHeight || 1;
-        const nextTop = next.getBoundingClientRect().top;
-        const preso = Math.min(1, Math.max(0, (stickyTop + cardH - nextTop) / cardH));
+        const preso = Math.min(1, Math.max(0, (window.scrollY + stickyTop - naturais[i]) / cardH));
 
-        card.style.transform = `scale(${1 - preso * 0.08})`;
-        card.style.filter = `brightness(${1 - preso * 0.35})`;
+        card.style.transform = `scale(${1 - preso * 0.1})`;
+        card.style.filter = `brightness(${1 - preso * 0.4})`;
       }
       ticking = false;
     };
@@ -51,13 +64,18 @@ export function StackCards({ itens }: { itens: readonly Item[] }) {
       ticking = true;
       requestAnimationFrame(apply);
     };
+    const onResize = () => {
+      medirNaturais();
+      apply();
+    };
 
+    medirNaturais();
     apply();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, [itens]);
 
