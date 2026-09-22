@@ -1,6 +1,8 @@
 import { Section } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WordSwap } from "@/components/ui/WordSwap";
 import { pain } from "@/content/site";
+import { PanelMock } from "./PanelMock";
 import styles from "./Pain.module.css";
 
 export function Pain() {
@@ -19,6 +21,12 @@ export function Pain() {
             </li>
           ))}
         </ul>
+        <div className={styles.demo}>
+          <SectionHeading title={pain.demo.titulo} intro={pain.demo.intro} />
+          <div className={styles.card}>
+            <PanelMock />
+          </div>
+        </div>
       </div>
     </Section>
   );

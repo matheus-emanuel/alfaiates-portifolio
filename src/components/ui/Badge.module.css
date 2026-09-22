@@ -14,4 +14,5 @@
 .rosa { background: rgba(206, 144, 149, 0.22); color: #9a5c61; }
 .laranja { background: rgba(255, 95, 31, 0.12); color: var(--action-primary-hover); }
 .sucesso { background: rgba(62, 142, 92, 0.14); color: var(--state-success); }
+.erro { background: rgba(192, 71, 43, 0.12); color: var(--state-error); }
 .neutro { background: var(--surface-alt); color: var(--text-muted); }

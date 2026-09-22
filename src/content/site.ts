@@ -42,18 +42,26 @@ export const hero = {
   ctaWhatsapp: "Falar agora no WhatsApp"
 };
 
-/** Mock do painel no hero: agenda do dia e caixa. Dados de exemplo. */
+/** Os três estados do pix na agenda. A ordem é a do menu de escolha. */
+export const STATUS_PIX = ["PIX OK", "A RECEBER", "PIX ATRASADO"] as const;
+export type StatusPix = (typeof STATUS_PIX)[number];
+
+/**
+ * Mock interativo da agenda do dia e do caixa. Dados de exemplo: os valores das
+ * linhas somam ao `recebidoAntes` (caixa das horas anteriores) para formar o
+ * "Recebido hoje" que o painel recalcula a cada troca de status.
+ */
 export const agendaMock = {
   titulo: "Agenda de hoje",
   relogio: "CAIXA 03 · 14:22",
   linhas: [
-    { hora: "09:00", nome: "Ana Prado", servico: "Corte + barba", status: "PIX OK" },
-    { hora: "10:30", nome: "Marcos Lima", servico: "Barba", status: "PIX OK" },
-    { hora: "11:15", nome: "Julia Reis", servico: "Corte", status: "A RECEBER" },
-    { hora: "13:00", nome: "Caio Souza", servico: "Corte + barba", status: "A RECEBER" }
-  ],
-  rodapeLabel: "Recebido hoje",
-  rodapeValor: "R$ 1.240"
+    { hora: "09:00", nome: "Ana Prado", servico: "Corte + barba", valor: 95, status: "PIX OK" },
+    { hora: "10:30", nome: "Marcos Lima", servico: "Barba", valor: 55, status: "PIX OK" },
+    { hora: "11:15", nome: "Julia Reis", servico: "Corte", valor: 60, status: "A RECEBER" },
+    { hora: "13:00", nome: "Caio Souza", servico: "Corte + barba", valor: 95, status: "A RECEBER" }
+  ] as { hora: string; nome: string; servico: string; valor: number; status: StatusPix }[],
+  recebidoAntes: 1090,
+  rodapeLabel: "Recebido hoje"
 };
 
 export const pain = {
@@ -64,7 +72,11 @@ export const pain = {
     "Sistema pronto com trinta telas, e você usa duas.",
     "Cliente que sumiu e ninguém percebeu.",
     "Fim do mês sem saber quanto entrou de verdade."
-  ]
+  ],
+  demo: {
+    titulo: "Esse sistema é de uma barbearia. O seu teria a cara do seu negócio",
+    intro: "A gente monta a solução em cima da rotina do seu negócio, com a cara do seu negócio. Clica nos status e mexe à vontade."
+  }
 };
 
 export const diferenciais = {

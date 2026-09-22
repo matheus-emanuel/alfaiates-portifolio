@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { contato, hero } from "@/content/site";
 import { HeroBackground } from "./HeroBackground";
-import { PanelMock } from "./PanelMock";
 import styles from "./Hero.module.css";
 
 export function Hero() {
@@ -11,12 +10,6 @@ export function Hero() {
     <section id="topo" className={styles.hero}>
       <HeroBackground />
       <div className={styles.inner}>
-        <div className={styles.stage}>
-          <div className={styles.mock}>
-            <PanelMock />
-          </div>
-        </div>
-
         <div className={styles.copy}>
           <Badge tone="laranja">{hero.badge}</Badge>
           <h1 className={styles.title}>{hero.titulo}</h1>

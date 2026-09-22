@@ -20,9 +20,6 @@
   gap: var(--space-6);
 }
 
-.stage { display: flex; justify-content: flex-end; }
-.mock { width: 100%; max-width: 440px; }
-
 .copy { display: flex; flex-direction: column; gap: var(--stack-gap); align-items: flex-start; }
 .title { max-width: 18ch; }
 .sub { font-size: 18px; color: var(--text-muted); }
@@ -47,12 +44,8 @@
 .trust:hover { box-shadow: var(--shadow-md); }
 .trust svg { color: var(--accent-trust); }
 
-/* Celular: o texto vem primeiro e o mockup desce pra baixo dele. */
 @media (max-width: 900px) {
   .inner { padding-bottom: var(--space-6); }
-  .copy { order: 1; }
-  .stage { order: 2; justify-content: flex-start; }
-  .mock { max-width: none; }
 }
 
 @media (max-width: 620px) {

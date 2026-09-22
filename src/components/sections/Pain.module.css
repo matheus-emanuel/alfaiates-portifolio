@@ -14,6 +14,16 @@
 /* O traço pontilhado é o motivo de costura pedido para a seção de dor. */
 .stitch { width: 18px; height: 0; border-top: 2px dashed var(--text-muted); margin-top: 14px; flex: none; }
 
+/* A demo continua a seção da dor: mesmo fundo, texto de um lado e o card do outro. */
+.demo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: var(--space-7);
+  align-items: center;
+}
+.card { width: 100%; }
+
 @media (max-width: 900px) {
   .list { grid-template-columns: minmax(0, 1fr); }
+  .demo { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
 }

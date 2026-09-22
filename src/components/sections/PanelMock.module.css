@@ -1,4 +1,5 @@
-/* Mockup real do produto no lugar da foto: o sistema não recebeu fotografia. */
+/* Mockup real do produto, agora interativo: o status do pix de cada cliente
+   muda e o caixa recalcula. */
 .head {
   display: flex;
   align-items: center;
@@ -10,18 +11,94 @@
 /* Print de tela do sistema é o outro lugar onde caixa alta é permitida. */
 .clock { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
 
+/* Progresso: só transform anima (scaleX), nunca width. */
+.progress { padding: 14px 20px 12px; border-bottom: 1px solid var(--border-hairline); }
+.progressText { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.lateNote { color: var(--state-error); font-weight: var(--weight-medium); }
+.track { height: 4px; border-radius: var(--radius-full); background: var(--surface-alt); overflow: hidden; }
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--state-success);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-standard);
+}
+
 .row {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 22px 52px 1fr auto;
   gap: 12px;
   align-items: center;
   padding: 14px 20px;
   border-bottom: 1px solid var(--border-hairline);
 }
+
+/* O ícone entra com o mesmo fade + 2px do resto do sistema a cada troca. */
+.state { display: inline-flex; animation: stateIn var(--dur-base) var(--ease-standard); }
+.ok { color: var(--state-success); }
+.pending { color: var(--text-muted); }
+.late { color: var(--state-error); }
+@keyframes stateIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .hour { font-family: var(--font-mono); font-size: 14px; color: var(--text-muted); }
-.who { display: flex; flex-direction: column; }
+.who { display: flex; flex-direction: column; min-width: 0; }
 .name { font-size: 15px; font-weight: var(--weight-medium); }
 .service { font-size: 13px; color: var(--text-muted); }
+
+/* Seletor de status: a pílula é o botão. */
+.picker { position: relative; }
+.trigger {
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font: inherit;
+}
+.trigger > * { transition: box-shadow var(--dur-base) var(--ease-standard); }
+.trigger:hover > * { box-shadow: var(--shadow-md); }
+.chevron,
+.chevronOpen { transition: transform var(--dur-fast) var(--ease-standard); }
+.chevronOpen { transform: rotate(180deg); }
+
+.menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 5;
+  min-width: 190px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  animation: stateIn var(--dur-base) var(--ease-standard);
+}
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--dur-fast) var(--ease-standard);
+}
+.option:hover,
+.option:focus-visible { background: var(--surface-alt); }
+.option[aria-checked="true"] { background: var(--surface-page); }
 
 .foot {
   display: flex;
@@ -29,6 +106,30 @@
   justify-content: space-between;
   padding: var(--space-3) 20px;
   background: var(--surface-alt);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
 }
+.footInfo { display: flex; flex-direction: column; gap: 2px; }
 .footLabel { font-size: 14px; color: var(--text-muted); }
-.footValue { font-family: var(--font-mono); font-size: 22px; font-weight: var(--weight-bold); }
+.footSub { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+.footValue { font-family: var(--font-mono); font-size: 22px; font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Depois de todas as regras base, senão elas ganham a disputa de ordem. */
+@media (max-width: 480px) {
+  .row { grid-template-columns: 20px 44px 1fr auto; gap: 8px; padding: 14px 16px; }
+  .head,
+  .progress,
+  .foot { padding-left: 16px; padding-right: 16px; }
+  .hour { font-size: 13px; }
+}

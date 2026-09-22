@@ -1,5 +1,6 @@
 import {
-  ArrowRight, CalendarCheck, Calculator, ChartNoAxesColumn, Cloud, CreditCard, FileCheck,
+  ArrowRight, CalendarCheck, Calculator, ChartNoAxesColumn, ChevronDown, Circle, CircleAlert,
+  CircleCheck, Cloud, CreditCard, FileCheck,
   GraduationCap, HandHeart, HardDrive, HardHat, HeartPulse, LayoutTemplate,
   Lock, Menu, Monitor, Package, Plug, Puzzle, ReceiptText, Ruler, Search,
   ShieldCheck, Users, X
@@ -15,6 +16,10 @@ const ICONS = {
   "calendar-check": CalendarCheck,
   calculator: Calculator,
   "chart-no-axes-column": ChartNoAxesColumn,
+  "chevron-down": ChevronDown,
+  circle: Circle,
+  "circle-alert": CircleAlert,
+  "circle-check": CircleCheck,
   cloud: Cloud,
   "credit-card": CreditCard,
   "file-check": FileCheck,
