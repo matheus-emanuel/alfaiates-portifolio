@@ -11,7 +11,7 @@ export function Portfolio() {
     <Section tone="alternado" id="portfolio">
       <div className="stack stack-6">
         <SectionHeading eyebrow={portfolio.eyebrow} title={portfolio.titulo} intro={portfolio.intro} />
-        <div className="grid-2">
+        <div className={`grid-2 ${styles.grid}`}>
           {portfolio.casos.map((c) => (
             <a key={c.id} href={c.href} target="_blank" rel="noreferrer" className={styles.card}>
               <div className={styles.frame}>

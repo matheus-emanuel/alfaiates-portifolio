@@ -1,9 +1,26 @@
-/* Lista costurada, não grade de cards: a página já usa grade de ServiceCard em
-   Serviços e em O que a gente entrega, e a terceira repetição achata o ritmo. */
-.rows { display: flex; flex-direction: column; }
+.stack {
+  /* Mesmo ponto do sticky-head (72px de nav + space-4): os dois grudam juntos. */
+  --stack-top: 96px;
+  display: flex;
+  flex-direction: column;
+  /* Fôlego depois do último cartão: sem isso a seção termina de repente,
+     ainda com ele preso no topo. */
+  padding-bottom: var(--space-8);
+}
 
-.row { display: flex; gap: var(--space-4); align-items: flex-start; padding: var(--space-5) 0; border-top: 2px dashed var(--border-hairline); }
-.row:first-child { padding-top: 0; border-top: none; }
+.card {
+  position: sticky;
+  top: var(--stack-top);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-5);
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transform-origin: top center;
+}
 
 .chip { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-sm); flex: none; }
 .malva { background: rgba(171, 117, 156, 0.14); color: var(--accent-trust); }
@@ -20,3 +37,7 @@
 .dotMalva { background: var(--accent-trust); }
 .dotRosa { background: var(--accent-warm-ink); }
 .dotPrimary { background: var(--action-primary); }
+
+@media (max-width: 900px) {
+  .stack { --stack-top: 84px; }
+}

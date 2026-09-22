@@ -17,11 +17,18 @@
 .card:focus-visible {
   border-color: rgba(255, 95, 31, 0.3);
   box-shadow: var(--shadow-md);
-  transform: var(--lift-hover);
+  transform: var(--lift-hover) scale(1.035);
   color: var(--text-body);
   text-decoration: none;
+  z-index: 1;
 }
 .card:active { transform: none; }
+
+/* Com um card em foco, os outros três cedem: encolhem um pouco em vez de
+   ficar parados, pra diferença de quem está com o mouse em cima ficar clara. */
+.grid:has(.card:hover, .card:focus-visible) .card:not(:hover):not(:focus-visible) {
+  transform: scale(0.965);
+}
 
 /* Proporção dos prints entregues (captura de navegador). Um quadro mais alto
    cortaria a largura da tela capturada, que é justo o que o card mostra. */

@@ -1,0 +1,5 @@
+.row { display: flex; gap: var(--space-3); align-items: stretch; }
+
+@media (max-width: 900px) {
+  .row { flex-direction: column; }
+}

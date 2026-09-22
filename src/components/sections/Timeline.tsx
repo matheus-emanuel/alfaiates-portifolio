@@ -10,7 +10,7 @@ const TOTAL = comoFunciona.passos.length;
 /** Distância de rolagem em que a linha se desenha por completo. Fixa, e não
  * a altura do bloco: os quatro passos juntos medem só ~200px, e usar a
  * própria altura fazia o traço pular de 0 a 100% numa rolagem de nada. */
-const FAIXA = 480;
+const FAIXA = 960;
 
 /** Progresso de 0 a 1 conforme o topo do bloco atravessa uma linha de leitura
  * fixa (65% da tela) ao longo de `FAIXA` pixels de rolagem. */

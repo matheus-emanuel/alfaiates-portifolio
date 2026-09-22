@@ -248,7 +248,7 @@ export const entregas = {
       tom: "primary",
       titulo: "Integrações",
       beneficio: "O que você já usa conversando com o sistema novo.",
-      bullets: ["WhatsApp e pagamentos", "Importação de planilha"]
+      bullets: ["WhatsApp e Pix", "Importação de planilha"]
     }
   ]
 } as const;
