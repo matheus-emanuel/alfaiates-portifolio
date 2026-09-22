@@ -273,22 +273,21 @@ export const quemSomos = {
     {
       id: "matheus-monte",
       nome: "Matheus Monte",
-      /** TODO(cliente): foto quadrada, mínimo 264x264, em public/time/ */
-      foto: PENDENTE,
+      foto: "/time/matheus.webp",
       linkedin: "https://www.linkedin.com/in/matheus-monte-7206941b6/",
       github: "https://github.com/matheus-emanuel"
     },
     {
       id: "leonardo-chalhoub",
       nome: "Leonardo Chalhoub",
-      foto: PENDENTE,
+      foto: "/time/leonardo.webp",
       linkedin: "https://www.linkedin.com/in/leonardochalhoub/",
       github: "https://github.com/leonardochalhoub"
     },
     {
       id: "davi-roque",
       nome: "Davi Roque",
-      foto: PENDENTE,
+      foto: "/time/davi.webp",
       linkedin: "https://www.linkedin.com/in/davi-r-62908b224/",
       github: "https://github.com/DRoqueProgrammer"
     }

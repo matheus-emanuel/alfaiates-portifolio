@@ -30,8 +30,6 @@ export function About() {
           </Card>
         </div>
 
-        <StitchDivider />
-
         <div className={styles.social}>
           <p className={styles.body}>{quemSomos.convite}</p>
           {links.instagram ? (
