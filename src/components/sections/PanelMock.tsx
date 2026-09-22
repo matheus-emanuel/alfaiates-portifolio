@@ -26,31 +26,34 @@ const STATE_CLASS: Record<StatusPix, string> = {
 };
 
 const brl = (n: number) => `R$ ${Math.round(n).toLocaleString("pt-BR")}`;
+const DIGITOS = "0123456789".split("");
 
-/** Conta de um valor até o outro em ~320ms; com movimento reduzido, troca seco. */
-function useTween(target: number) {
-  const [shown, setShown] = useState(target);
-  const from = useRef(target);
-
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const start = from.current;
-    const t0 = performance.now();
-    let raf = 0;
-
-    const step = (now: number) => {
-      const p = reduced ? 1 : Math.min(1, (now - t0) / 320);
-      const eased = 1 - Math.pow(1 - p, 3);
-      const v = start + (target - start) * eased;
-      from.current = v;
-      setShown(v);
-      if (p < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [target]);
-
-  return shown;
+/**
+ * Cada dígito é uma fita de 0 a 9 (CSS puro: `translateY` só troca a linha
+ * visível). Ao mudar o valor, o React troca o dígito-alvo e a `transition`
+ * do CSS faz o resto — sem laço de animação em JS, sem `useEffect`.
+ */
+function Odometro({ valor }: { valor: number }) {
+  const texto = Math.round(valor).toLocaleString("pt-BR");
+  return (
+    <span className={styles.odometro}>
+      {texto.split("").map((c, i) =>
+        /\d/.test(c) ? (
+          <span key={i} className={styles.digito}>
+            <span className={styles.fita} style={{ transform: `translateY(-${Number(c) * 10}%)` }}>
+              {DIGITOS.map((n) => (
+                <span key={n}>{n}</span>
+              ))}
+            </span>
+          </span>
+        ) : (
+          <span key={i} aria-hidden="true">
+            {c}
+          </span>
+        )
+      )}
+    </span>
+  );
 }
 
 interface PickerProps {
@@ -143,7 +146,6 @@ export function PanelMock() {
   const paidCount = status.filter((s) => s === "PIX OK").length;
   const lateCount = status.filter((s) => s === "PIX ATRASADO").length;
   const received = agendaMock.recebidoAntes + paid;
-  const shownReceived = useTween(received);
 
   return (
     <Card flush radius="card">
@@ -200,7 +202,7 @@ export function PanelMock() {
           <span className={styles.footSub}>A receber {brl(open)}</span>
         </span>
         <span className={styles.footValue} aria-hidden="true">
-          {brl(shownReceived)}
+          R$ <Odometro valor={received} />
         </span>
         <span className={styles.srOnly} aria-live="polite">
           {agendaMock.rodapeLabel}: {brl(received)}. A receber: {brl(open)}.

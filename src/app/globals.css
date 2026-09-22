@@ -53,6 +53,7 @@ body { min-height: 100dvh; }
   animation: pageDrift 26s ease-in-out infinite alternate;
   will-change: transform;
 }
+
 @keyframes pageDrift {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(0, 56px, 0); }

@@ -1,0 +1,14 @@
+.wrap { position: relative; border-radius: var(--radius-card); }
+
+.wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-standard);
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 95, 31, 0.16), transparent 70%);
+}
+.wrap:hover::before { opacity: 1; }

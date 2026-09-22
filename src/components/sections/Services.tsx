@@ -3,6 +3,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "@/components/ui/ServiceCard";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { servicos } from "@/content/site";
+import { MouseGlow } from "./MouseGlow";
 
 export function Services() {
   return (
@@ -11,13 +12,9 @@ export function Services() {
         <SectionHeading eyebrow={servicos.eyebrow} title={servicos.titulo} intro={servicos.intro} />
         <div className="grid-3">
           {servicos.itens.map((s) => (
-            <ServiceCard
-              key={s.titulo}
-              icon={<Icon name={s.icone as IconName} />}
-              title={s.titulo}
-              benefit={s.beneficio}
-              bullets={s.bullets}
-            />
+            <MouseGlow key={s.titulo}>
+              <ServiceCard icon={<Icon name={s.icone as IconName} />} title={s.titulo} benefit={s.beneficio} bullets={s.bullets} />
+            </MouseGlow>
           ))}
         </div>
       </div>

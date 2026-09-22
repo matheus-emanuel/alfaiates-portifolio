@@ -5,16 +5,20 @@ export interface TrustItemProps {
   icon: ReactNode;
   title: string;
   description?: string;
+  /** Só um abre por vez: mesmo `name` em todo o grupo, sem JavaScript. */
+  group?: string;
+  defaultOpen?: boolean;
 }
 
-export function TrustItem({ icon, title, description }: TrustItemProps) {
+export function TrustItem({ icon, title, description, group, defaultOpen = false }: TrustItemProps) {
   return (
-    <div className={styles.item}>
-      <span className={styles.chip}>{icon}</span>
-      <div className={styles.body}>
+    <details className={styles.item} name={group} open={defaultOpen}>
+      <summary className={styles.summary}>
+        <span className={styles.chip}>{icon}</span>
         <h3 className={styles.title}>{title}</h3>
-        {description ? <p className={styles.desc}>{description}</p> : null}
-      </div>
-    </div>
+        <span className={styles.sign} aria-hidden="true" />
+      </summary>
+      {description ? <p className={styles.desc}>{description}</p> : null}
+    </details>
   );
 }

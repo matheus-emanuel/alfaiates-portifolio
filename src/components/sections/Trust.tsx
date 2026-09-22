@@ -10,12 +10,14 @@ export function Trust() {
       <div className="stack stack-6">
         <SectionHeading eyebrow={confianca.eyebrow} title={confianca.titulo} />
         <div className="grid-2">
-          {confianca.itens.map((t) => (
+          {confianca.itens.map((t, i) => (
             <TrustItem
               key={t.titulo}
               icon={<Icon name={t.icone as IconName} size={20} />}
               title={t.titulo}
               description={t.descricao}
+              group="confianca"
+              defaultOpen={i === 0}
             />
           ))}
         </div>

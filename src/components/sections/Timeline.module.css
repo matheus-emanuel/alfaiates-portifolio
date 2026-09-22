@@ -1,0 +1,19 @@
+.timeline { display: flex; flex-direction: column; gap: var(--space-6); }
+
+/* Substitui o StitchDivider nesta seção: mesma altura de traço, mas o
+   preenchimento cresce com a rolagem em vez de já vir pronto. */
+.track {
+  height: 2px;
+  background: var(--border-hairline);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  width: 100%;
+  background: var(--action-primary);
+  transform-origin: left;
+  transform: scaleX(0);
+  /* Sem transition: o valor já vem calculado a cada quadro de rolagem, uma
+     transição própria só atrasaria atrás do dedo/scroll do usuário. */
+}

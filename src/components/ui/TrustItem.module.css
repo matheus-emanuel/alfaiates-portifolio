@@ -1,4 +1,23 @@
-.item { display: flex; gap: var(--space-3); align-items: flex-start; }
+/* Accordion nativo, como o FAQ: <details> abre/fecha sem JavaScript, com
+   teclado e leitor de tela corretos. `name` no elemento (posto pelo Trust)
+   deixa só um aberto por vez. */
+.item {
+  padding: var(--space-4);
+  background: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-card);
+  transition: border-color var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard);
+}
+.item[open] { border-color: rgba(171, 117, 156, 0.35); box-shadow: var(--shadow-sm); }
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  list-style: none;
+}
+.summary::-webkit-details-marker { display: none; }
 
 /* Malva carrega confiança no sistema: é o tom desta seção. */
 .chip {
@@ -12,6 +31,26 @@
   background: rgba(171, 117, 156, 0.14);
   color: var(--accent-trust);
 }
-.body { display: flex; flex-direction: column; gap: 4px; }
-.title { margin: 0; font-weight: var(--weight-semibold); font-size: var(--size-h4); }
-.desc { margin: 0; font-size: 16px; color: var(--text-muted); }
+
+.title { margin: 0; flex: 1; font-weight: var(--weight-semibold); font-size: var(--size-h4); }
+
+.sign {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  color: var(--accent-trust);
+  border: 1.5px solid rgba(171, 117, 156, 0.4);
+  transition: background var(--dur-base) var(--ease-standard), color var(--dur-base) var(--ease-standard);
+}
+.item[open] .sign { background: var(--accent-trust); color: var(--text-invert); border-color: transparent; }
+.sign::after { content: "+"; }
+.item[open] .sign::after { content: "−"; }
+
+.desc { margin: var(--space-3) 0 0 calc(40px + var(--space-3)); font-size: 16px; color: var(--text-muted); }
